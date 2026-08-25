@@ -30,49 +30,52 @@
             overflow: hidden;
         }
 
-        /* ---------- ОБЩИЙ КОНТЕЙНЕР ДЛЯ ВСЕХ СТРАНИЦ ---------- */
+        /* ---------- ОСНОВНОЙ КОНТЕЙНЕР С ПРОКРУТКОЙ ---------- */
         .app {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            background: #FDFBF7;
-        }
-
-        /* ---------- СТРАНИЦЫ (переключаются) ---------- */
-        .page {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow-y: auto;
-            overflow-x: hidden;
-            padding: 24px 24px 100px 24px;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-            background: #FDFBF7;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
-        }
-        .page.active {
-            opacity: 1;
-            visibility: visible;
-            z-index: 10;
+            background: #FDFBF7;
         }
 
-        .page-content {
-            max-width: 420px;
-            margin: 0 auto;
+        /* ---------- СЛАЙДЫ ---------- */
+        .slide {
+            position: relative;
             width: 100%;
+            height: 100vh;
+            min-height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px 24px 80px 24px;
+            background: #FDFBF7;
+            overflow-y: auto;
+            /* для контента, который может быть длиннее экрана (но мы стараемся влезть) */
+        }
+
+        .slide-content {
+            max-width: 420px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
         }
 
         /* ---------- ПЛАВАЮЩИЙ БРЕНДИНГ ---------- */
         .brand-footer {
             position: fixed;
-            bottom: 70px;
+            bottom: 76px;
             right: 20px;
             z-index: 50;
             text-align: right;
@@ -108,6 +111,7 @@
             padding: 24px 20px;
             background: rgba(255, 255, 255, 0.5);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            width: 100%;
         }
         .ornate-frame::before {
             content: '';
@@ -146,85 +150,20 @@
             margin-top: 6px;
         }
 
-        /* ---------- НАВИГАЦИЯ МЕЖДУ СТРАНИЦАМИ ---------- */
-        .page-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 28px;
-            gap: 12px;
-        }
-        .page-nav .nav-btn {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 10px 20px;
-            border-radius: 40px;
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
-            background: #8F9E8B;
-            color: #fff;
-            box-shadow: 0 4px 12px rgba(143, 158, 139, 0.2);
-            min-width: 100px;
-        }
-        .page-nav .nav-btn:active {
-            transform: scale(0.96);
-        }
-        .page-nav .nav-btn--secondary {
-            background: transparent;
-            color: #8F9E8B;
-            box-shadow: none;
-            border: 1px solid rgba(143, 158, 139, 0.3);
-        }
-        .page-nav .nav-btn--secondary:active {
-            background: rgba(143, 158, 139, 0.05);
-        }
-        .page-nav .nav-btn--rose {
-            background: #D2A3A9;
-            box-shadow: 0 4px 12px rgba(210, 163, 169, 0.3);
-        }
-        .page-nav .page-dots {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-        }
-        .page-nav .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #D2D2D2;
-            transition: background 0.3s;
-        }
-        .page-nav .dot.active {
-            background: #8F9E8B;
-            width: 10px;
-            height: 10px;
-        }
-        .page-nav .nav-btn:disabled {
-            opacity: 0.3;
-            pointer-events: none;
-        }
-
         /* ============================================================
-           СТРАНИЦА 0: КОНВЕРТ (обложка)
+           СЛАЙД 0: КОНВЕРТ
            ============================================================ */
-        #page-0 {
-            display: flex;
-            align-items: center;
+        #slide-0 {
             justify-content: center;
             padding: 20px;
         }
-        #page-0 .envelope-wrapper {
+        .envelope-wrapper {
             width: 100%;
             max-width: 320px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-
         .envelope {
             position: relative;
             width: 100%;
@@ -352,9 +291,9 @@
         }
 
         /* ============================================================
-           СТРАНИЦЫ 1–4: ОСНОВНОЙ КОНТЕНТ
+           СЛАЙДЫ 1–4: ОСНОВНОЙ КОНТЕНТ
            ============================================================ */
-        /* Страница 1: Текст приглашения */
+        /* Текст приглашения */
         .invite-text-block {
             font-size: 0.9rem;
             line-height: 1.9;
@@ -375,9 +314,10 @@
             text-align: right;
         }
 
-        /* Страница 2: Локация */
+        /* Локация */
         .venue-card {
             text-align: center;
+            width: 100%;
         }
         .venue-card .venue-name {
             font-family: 'Cormorant Garamond', serif;
@@ -431,12 +371,13 @@
             background: #7B886F;
         }
 
-        /* Страница 3: Дресс-код */
+        /* Дресс-код */
         .dress-note {
             font-size: 0.8rem;
             color: #555;
             line-height: 1.7;
             margin-bottom: 12px;
+            width: 100%;
         }
         .dress-note .delicate {
             display: block;
@@ -454,6 +395,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 14px;
             margin-top: 12px;
+            width: 100%;
         }
         .dress-swatches .swatch-item {
             background: #fff;
@@ -524,7 +466,7 @@
             margin-top: 4px;
         }
 
-        /* Страница 4: RSVP */
+        /* RSVP */
         .rsvp-letter {
             background: #FDFBF7;
             border: 1px solid #D2A3A9;
@@ -532,6 +474,7 @@
             padding: 24px 20px;
             box-shadow: 0 8px 32px rgba(210, 163, 169, 0.08);
             position: relative;
+            width: 100%;
         }
         .rsvp-letter::before {
             content: '';
@@ -633,11 +576,61 @@
         }
 
         /* ============================================================
+           НИЖНЯЯ НАВИГАЦИЯ (иконки)
+           ============================================================ */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(253, 251, 247, 0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(143, 158, 139, 0.15);
+            display: flex;
+            justify-content: space-around;
+            padding: 6px 0 10px;
+            z-index: 99;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.02);
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #8F9E8B;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s;
+            padding: 4px 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            min-width: 44px;
+        }
+        .nav-item svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            margin-bottom: 2px;
+        }
+        .nav-item.active {
+            color: #4A5A44;
+        }
+        .nav-item.active svg {
+            stroke: #4A5A44;
+        }
+
+        /* ============================================================
            АДАПТИВ
            ============================================================ */
         @media (max-width: 480px) {
-            .page {
-                padding: 16px 16px 90px 16px;
+            .slide {
+                padding: 16px 16px 70px 16px;
             }
             .letter-preview .names {
                 font-size: 1.3rem;
@@ -652,34 +645,40 @@
             .page-title {
                 font-size: 1.8rem;
             }
-            .envelope {
+            .envelope-wrapper {
                 max-width: 280px;
             }
-            .page-nav .nav-btn {
-                font-size: 0.6rem;
-                padding: 8px 14px;
-                min-width: 70px;
+            .nav-item {
+                font-size: 0.4rem;
+            }
+            .nav-item svg {
+                width: 18px;
+                height: 18px;
             }
         }
         @media (min-width: 600px) {
-            .page-content {
+            .slide-content {
                 max-width: 560px;
             }
         }
 
-        /* ---------- АНИМАЦИЯ ПРИ ПЕРЕКЛЮЧЕНИИ ---------- */
-        .page.fade-enter {
-            animation: fadeIn 0.6s ease forwards;
+        /* ============================================================
+           АНИМАЦИЯ ПОЯВЛЕНИЯ БЛОКОВ
+           ============================================================ */
+        .slide {
+            opacity: 0.3;
+            transition: opacity 0.8s ease;
         }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(16px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .slide.active-slide {
+            opacity: 1;
+        }
+        /* для скролла при смене слайда */
+        .app::-webkit-scrollbar {
+            display: none;
+        }
+        .app {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
     </style>
 </head>
@@ -696,30 +695,32 @@
         </div>
 
         <!-- ============================================================
-        СТРАНИЦА 0: КОНВЕРТ (обложка)
+        СЛАЙД 0: КОНВЕРТ
         ============================================================ -->
-        <div class="page active" id="page-0">
-            <div class="envelope-wrapper">
-                <div class="envelope" id="envelope" onclick="openEnvelope()">
-                    <div class="flap"></div>
-                    <div class="seal">A&amp;A</div>
-                    <div class="letter-preview">
-                        <div class="names">
-                            Алия <span class="ampersand">&amp;</span> Алишер
+        <section class="slide active-slide" id="slide-0" data-index="0">
+            <div class="slide-content">
+                <div class="envelope-wrapper">
+                    <div class="envelope" id="envelope" onclick="openEnvelope()">
+                        <div class="flap"></div>
+                        <div class="seal">A&amp;A</div>
+                        <div class="letter-preview">
+                            <div class="names">
+                                Алия <span class="ampersand">&amp;</span> Алишер
+                            </div>
+                            <div class="date-block">27 июля 2026</div>
+                            <div class="short-line">Приглашаем вас разделить нашу радость</div>
                         </div>
-                        <div class="date-block">27 июля 2026</div>
-                        <div class="short-line">Приглашаем вас разделить нашу радость</div>
                     </div>
+                    <div class="envelope-hint" id="envelopeHint">Нажмите на конверт, чтобы открыть</div>
                 </div>
-                <div class="envelope-hint" id="envelopeHint">Нажмите на конверт, чтобы открыть</div>
             </div>
-        </div>
+        </section>
 
         <!-- ============================================================
-        СТРАНИЦА 1: ТЕКСТ ПРИГЛАШЕНИЯ
+        СЛАЙД 1: ПРИГЛАШЕНИЕ
         ============================================================ -->
-        <div class="page" id="page-1">
-            <div class="page-content">
+        <section class="slide" id="slide-1" data-index="1">
+            <div class="slide-content">
                 <div class="ornate-frame ornate-frame--rose">
                     <h2 class="page-title">Приглашение</h2>
                     <div class="invite-text-block">
@@ -736,25 +737,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="page-nav">
-                    <button class="nav-btn nav-btn--secondary" disabled>Назад</button>
-                    <div class="page-dots">
-                        <span class="dot"></span>
-                        <span class="dot active"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </div>
-                    <button class="nav-btn nav-btn--rose" onclick="goToPage(2)">Далее →</button>
-                </div>
             </div>
-        </div>
+        </section>
 
         <!-- ============================================================
-        СТРАНИЦА 2: ЛОКАЦИЯ
+        СЛАЙД 2: ЛОКАЦИЯ
         ============================================================ -->
-        <div class="page" id="page-2">
-            <div class="page-content">
+        <section class="slide" id="slide-2" data-index="2">
+            <div class="slide-content">
                 <div class="ornate-frame ornate-frame--sage">
                     <h2 class="page-title">Локация</h2>
                     <div class="venue-card">
@@ -770,25 +760,14 @@
                         </button>
                     </div>
                 </div>
-                <div class="page-nav">
-                    <button class="nav-btn nav-btn--secondary" onclick="goToPage(1)">← Назад</button>
-                    <div class="page-dots">
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot active"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </div>
-                    <button class="nav-btn" onclick="goToPage(3)">Далее →</button>
-                </div>
             </div>
-        </div>
+        </section>
 
         <!-- ============================================================
-        СТРАНИЦА 3: ДРЕСС-КОД
+        СЛАЙД 3: ДРЕСС-КОД
         ============================================================ -->
-        <div class="page" id="page-3">
-            <div class="page-content">
+        <section class="slide" id="slide-3" data-index="3">
+            <div class="slide-content">
                 <div class="ornate-frame ornate-frame--rose">
                     <h2 class="page-title">Дресс-код</h2>
                     <div class="dress-note">
@@ -831,25 +810,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="page-nav">
-                    <button class="nav-btn nav-btn--secondary" onclick="goToPage(2)">← Назад</button>
-                    <div class="page-dots">
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot active"></span>
-                        <span class="dot"></span>
-                    </div>
-                    <button class="nav-btn nav-btn--rose" onclick="goToPage(4)">Далее →</button>
-                </div>
             </div>
-        </div>
+        </section>
 
         <!-- ============================================================
-        СТРАНИЦА 4: RSVP
+        СЛАЙД 4: RSVP
         ============================================================ -->
-        <div class="page" id="page-4">
-            <div class="page-content">
+        <section class="slide" id="slide-4" data-index="4">
+            <div class="slide-content">
                 <div class="rsvp-letter">
                     <h2 class="page-title" style="margin-top:0;">Подтверждение</h2>
                     <p style="font-size:0.8rem; color:#555; margin-bottom:18px;">Пожалуйста, ответьте до <strong>15 мая 2027</strong></p>
@@ -889,19 +857,34 @@
                         <strong>Цветы:</strong> Вместо букетов мы просим вас сделать пожертвование в приют для животных —<br>ваш жест станет частью нашей благодарности.
                     </div>
                 </div>
-                <div class="page-nav">
-                    <button class="nav-btn nav-btn--secondary" onclick="goToPage(3)">← Назад</button>
-                    <div class="page-dots">
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot active"></span>
-                    </div>
-                    <button class="nav-btn" disabled style="opacity:0.3;">Готово</button>
-                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- ============================================================
+        НИЖНЯЯ НАВИГАЦИЯ (иконки)
+        ============================================================ -->
+        <nav class="bottom-nav" id="bottomNav">
+            <button class="nav-item active" data-slide="0">
+                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span>Главная</span>
+            </button>
+            <button class="nav-item" data-slide="1">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16v12H4z"/><polyline points="22 6 12 13 2 6"/></svg>
+                <span>Приглашение</span>
+            </button>
+            <button class="nav-item" data-slide="2">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Локация</span>
+            </button>
+            <button class="nav-item" data-slide="3">
+                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M8 8L16 16M16 8L8 16"/></svg>
+                <span>Дресс-код</span>
+            </button>
+            <button class="nav-item" data-slide="4">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16v12H4z"/><polyline points="22 6 12 13 2 6"/></svg>
+                <span>RSVP</span>
+            </button>
+        </nav>
 
     </div>
 
@@ -909,14 +892,15 @@
     СКРИПТЫ
     ============================================================ -->
     <script>
-        const TOTAL_PAGES = 5; // 0..4
-        let currentPage = 0;
-        let envelopeOpened = false;
-
-        // DOM refs
-        const pages = document.querySelectorAll('.page');
+        // ---------- ПЕРЕМЕННЫЕ ----------
+        const app = document.getElementById('app');
+        const slides = document.querySelectorAll('.slide');
+        const navItems = document.querySelectorAll('.nav-item');
         const envelope = document.getElementById('envelope');
         const hint = document.getElementById('envelopeHint');
+        let envelopeOpened = false;
+        let currentSlide = 0;
+        let isScrolling = false;
 
         // ---------- ОТКРЫТИЕ КОНВЕРТА ----------
         function openEnvelope() {
@@ -925,60 +909,82 @@
             envelope.classList.add('open');
             hint.classList.add('hidden');
 
-            // Через паузу переходим на первую страницу
+            // Через паузу переходим к слайду 1
             setTimeout(() => {
-                goToPage(1);
-            }, 900);
+                goToSlide(1);
+            }, 800);
         }
 
-        // ---------- ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ ----------
-        function goToPage(index) {
-            if (index < 0 || index >= TOTAL_PAGES) return;
-            if (index === 0) {
-                // Возврат на конверт — закрываем его
-                envelopeOpened = false;
-                envelope.classList.remove('open');
-                hint.classList.remove('hidden');
-            }
+        // ---------- ПЕРЕКЛЮЧЕНИЕ СЛАЙДОВ ----------
+        function goToSlide(index) {
+            if (index < 0 || index >= slides.length) return;
+            if (isScrolling) return;
+            isScrolling = true;
 
-            // Скрыть все страницы
-            pages.forEach(p => p.classList.remove('active', 'fade-enter'));
-
-            // Показать нужную
-            const target = document.getElementById(`page-${index}`);
-            if (target) {
-                target.classList.add('active', 'fade-enter');
-                // убираем класс анимации после её завершения
-                setTimeout(() => {
-                    target.classList.remove('fade-enter');
-                }, 700);
-            }
-
-            // Обновить точки (если есть на странице)
-            const dots = target ? target.querySelectorAll('.dot') : [];
-            if (dots.length) {
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === index);
-                });
-            }
-
-            // Обновить кнопки "Назад" на каждой странице
-            const backBtns = target ? target.querySelectorAll('.nav-btn--secondary') : [];
-            backBtns.forEach(btn => {
-                btn.disabled = (index === 0 || index === 1);
+            const target = slides[index];
+            const container = app;
+            // Вычисляем позицию
+            const offsetTop = target.offsetTop;
+            container.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
             });
 
-            // Обновить dots на всех страницах (для синхронизации)
-            document.querySelectorAll('.page-nav .dot').forEach((dot, i) => {
-                const parentPage = dot.closest('.page');
-                if (parentPage) {
-                    const pageIdx = parseInt(parentPage.id.split('-')[1]);
-                    dot.classList.toggle('active', pageIdx === index);
+            // Обновляем активные классы после окончания скролла
+            setTimeout(() => {
+                slides.forEach(s => s.classList.remove('active-slide'));
+                target.classList.add('active-slide');
+                currentSlide = index;
+                updateNav(index);
+                isScrolling = false;
+            }, 500); // примерно время скролла
+        }
+
+        // ---------- ОБНОВЛЕНИЕ НАВИГАЦИИ ----------
+        function updateNav(index) {
+            navItems.forEach((btn, i) => {
+                btn.classList.toggle('active', i === index);
+            });
+        }
+
+        // ---------- ОБРАБОТЧИКИ НАВИГАЦИИ ----------
+        navItems.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const slideIndex = parseInt(this.dataset.slide);
+                if (slideIndex === 0 && !envelopeOpened) {
+                    // Если конверт не открыт, сначала открываем
+                    openEnvelope();
+                    return;
                 }
+                goToSlide(slideIndex);
             });
+        });
 
-            currentPage = index;
-        }
+        // ---------- ОТСЛЕЖИВАНИЕ СКРОЛЛА ДЛЯ АКТИВНОСТИ СЛАЙДОВ ----------
+        let scrollTimeout;
+        app.addEventListener('scroll', function() {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                // Определяем, какой слайд сейчас в зоне видимости
+                let maxVisible = 0;
+                let activeIndex = 0;
+                slides.forEach((slide, i) => {
+                    const rect = slide.getBoundingClientRect();
+                    const visible = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+                    if (visible > maxVisible) {
+                        maxVisible = visible;
+                        activeIndex = i;
+                    }
+                });
+                if (activeIndex !== currentSlide) {
+                    currentSlide = activeIndex;
+                    slides.forEach(s => s.classList.remove('active-slide'));
+                    slides[activeIndex].classList.add('active-slide');
+                    updateNav(activeIndex);
+                }
+            }, 100);
+        });
 
         // ---------- RSVP ОТПРАВКА ----------
         function submitRSVP(e) {
@@ -986,7 +992,6 @@
             const form = document.getElementById('rsvpForm');
             const success = document.getElementById('rsvpSuccess');
 
-            // Простая валидация
             const name = document.getElementById('name').value.trim();
             if (!name) {
                 alert('Пожалуйста, укажите ваше имя.');
@@ -996,12 +1001,16 @@
             form.style.display = 'none';
             success.style.display = 'block';
 
-            // Через 2.5 сек возвращаем на конверт
             setTimeout(() => {
                 form.style.display = 'block';
                 success.style.display = 'none';
                 form.reset();
-                goToPage(0);
+                // возврат на главный слайд (конверт)
+                goToSlide(0);
+                // закрываем конверт, чтобы можно было снова открыть
+                envelopeOpened = false;
+                envelope.classList.remove('open');
+                hint.classList.remove('hidden');
             }, 2800);
         }
 
@@ -1012,15 +1021,17 @@
         }
 
         // ---------- ИНИЦИАЛИЗАЦИЯ ----------
-        // Ставим активные точки на странице 0
-        document.querySelectorAll('#page-0 .dot').forEach((dot, i) => {
-            dot.classList.toggle('active', i === 0);
+        // Делаем первый слайд активным
+        slides.forEach((s, i) => {
+            if (i === 0) s.classList.add('active-slide');
+            else s.classList.remove('active-slide');
         });
+        updateNav(0);
 
-        // Блокируем кнопку "Назад" на первой странице
-        document.querySelector('#page-1 .nav-btn--secondary').disabled = true;
+        // Блокируем переходы на другие слайды до открытия конверта (кроме кликов по навигации, которые вызывают openEnvelope)
+        // Но мы уже обработали это в кликах по навигации: если slideIndex===0 и конверт не открыт, вызываем openEnvelope
 
-        console.log('Сайт приглашения — Алия & Алишер');
+        console.log('Сайт приглашения — Алия & Алишер (слайды)');
     </script>
 
 </body>
