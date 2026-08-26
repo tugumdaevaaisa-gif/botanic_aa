@@ -78,7 +78,7 @@
             z-index: 2;
         }
 
-        /* ---------- КРУЖЕВО КАК ФОН СЛАЙДОВ (увеличенное) ---------- */
+        /* ---------- ВСТРОЕННОЕ КРУЖЕВО (SVG-ПАТТЕРН) ---------- */
         .slide::before {
             content: '';
             position: absolute;
@@ -86,12 +86,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #F4E9E4; /* Более тёмный фон под кружево */
-            background-image: url('kr1.png');
-            background-size: 700px 700px; /* Увеличенный масштаб */
+            background-color: #F4E9E4;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' opacity='0.25'%3E%3Cdefs%3E%3Cpattern id='lace' x='0' y='0' width='140' height='140' patternUnits='userSpaceOnUse'%3E%3Cpath d='M70 20 Q85 40 100 20 Q115 0 130 20 L130 50 Q150 65 130 80 Q110 95 130 110 L130 140 Q115 160 100 140 Q85 120 70 140 L70 110 Q50 95 70 80 Q90 65 70 50 Z' fill='none' stroke='%23D2A3A9' stroke-width='1.2'/%3E%3Ccircle cx='100' cy='80' r='12' fill='none' stroke='%23D2A3A9' stroke-width='0.8'/%3E%3Ccircle cx='70' cy='80' r='6' fill='none' stroke='%23D2A3A9' stroke-width='0.8'/%3E%3Ccircle cx='130' cy='80' r='6' fill='none' stroke='%23D2A3A9' stroke-width='0.8'/%3E%3Ccircle cx='100' cy='50' r='4' fill='none' stroke='%23D2A3A9' stroke-width='0.6'/%3E%3Ccircle cx='100' cy='110' r='4' fill='none' stroke='%23D2A3A9' stroke-width='0.6'/%3E%3Cpath d='M40 40 L160 40' stroke='%23D2A3A9' stroke-width='0.5' stroke-dasharray='4 6'/%3E%3Cpath d='M40 120 L160 120' stroke='%23D2A3A9' stroke-width='0.5' stroke-dasharray='4 6'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23lace)'/%3E%3C/svg%3E");
+            background-size: 700px 700px;
             background-repeat: repeat;
             background-position: center;
-            opacity: 0.5; /* Увеличена, чтобы было видно */
+            opacity: 0.7;
             pointer-events: none;
             z-index: 0;
         }
@@ -153,7 +153,7 @@
             transition: all 0.3s;
             overflow: hidden;
         }
-        /* Кружево внутри рамки (увеличенное) */
+        /* Кружево внутри рамки — встроенный паттерн */
         .ornate-frame::before {
             content: '';
             position: absolute;
@@ -162,10 +162,10 @@
             width: 100%;
             height: 100%;
             background-color: rgba(244, 233, 228, 0.3);
-            background-image: url('kr1.png');
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 140' opacity='0.15'%3E%3Cdefs%3E%3Cpattern id='lace-small' x='0' y='0' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M50 15 Q60 30 70 15 Q80 0 90 15 L90 35 Q105 45 90 55 Q75 65 90 75 L90 95 Q80 110 70 95 Q60 80 50 95 L50 75 Q35 65 50 55 Q65 45 50 35 Z' fill='none' stroke='%23D2A3A9' stroke-width='0.8'/%3E%3Ccircle cx='70' cy='55' r='8' fill='none' stroke='%23D2A3A9' stroke-width='0.6'/%3E%3Ccircle cx='50' cy='55' r='4' fill='none' stroke='%23D2A3A9' stroke-width='0.6'/%3E%3Ccircle cx='90' cy='55' r='4' fill='none' stroke='%23D2A3A9' stroke-width='0.6'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23lace-small)'/%3E%3C/svg%3E");
             background-size: 500px 500px;
             background-repeat: repeat;
-            opacity: 0.3;
+            opacity: 0.4;
             pointer-events: none;
             z-index: 0;
         }
@@ -215,7 +215,7 @@
         }
 
         /* ============================================================
-           СЛАЙД 0: КОНВЕРТ (с кружевным фоном)
+           СЛАЙД 0: КОНВЕРТ
            ============================================================ */
         #slide-0 {
             justify-content: center;
@@ -224,7 +224,7 @@
         }
         #slide-0::before {
             background-color: #F4E9E4;
-            background-image: url('kr1.png');
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' opacity='0.3'%3E%3Cdefs%3E%3Cpattern id='lace-big' x='0' y='0' width='120' height='120' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 15 Q75 30 90 15 Q105 0 120 15 L120 40 Q140 50 120 60 Q100 70 120 80 L120 105 Q105 120 90 105 Q75 90 60 105 L60 80 Q40 70 60 60 Q80 50 60 40 Z' fill='none' stroke='%23D2A3A9' stroke-width='1.5'/%3E%3Ccircle cx='90' cy='60' r='12' fill='none' stroke='%23D2A3A9' stroke-width='1'/%3E%3Ccircle cx='60' cy='60' r='6' fill='none' stroke='%23D2A3A9' stroke-width='1'/%3E%3Ccircle cx='120' cy='60' r='6' fill='none' stroke='%23D2A3A9' stroke-width='1'/%3E%3Ccircle cx='90' cy='35' r='4' fill='none' stroke='%23D2A3A9' stroke-width='0.8'/%3E%3Ccircle cx='90' cy='85' r='4' fill='none' stroke='%23D2A3A9' stroke-width='0.8'/%3E%3Cpath d='M30 30 L150 30' stroke='%23D2A3A9' stroke-width='0.8' stroke-dasharray='5 8'/%3E%3Cpath d='M30 90 L150 90' stroke='%23D2A3A9' stroke-width='0.8' stroke-dasharray='5 8'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23lace-big)'/%3E%3C/svg%3E");
             background-size: 600px 600px;
             background-repeat: repeat;
             opacity: 0.6;
@@ -289,7 +289,7 @@
             box-shadow: 0 30px 80px rgba(210, 163, 169, 0.4);
         }
 
-        /* Кружево на конверте — крупное, растянутое */
+        /* Кружево на конверте — встроенный паттерн */
         .envelope::before {
             content: '';
             position: absolute;
@@ -297,8 +297,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('kr1.png');
-            background-size: 500px 500px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120' opacity='0.4'%3E%3Cdefs%3E%3Cpattern id='lace-env' x='0' y='0' width='80' height='80' patternUnits='userSpaceOnUse'%3E%3Cpath d='M40 10 Q50 25 60 10 Q70 0 80 10 L80 25 Q95 30 80 40 Q65 50 80 60 L80 75 Q70 85 60 75 Q50 65 40 75 L40 60 Q25 50 40 40 Q55 30 40 25 Z' fill='none' stroke='%23B08D57' stroke-width='1.2'/%3E%3Ccircle cx='60' cy='40' r='8' fill='none' stroke='%23B08D57' stroke-width='0.8'/%3E%3Ccircle cx='40' cy='40' r='4' fill='none' stroke='%23B08D57' stroke-width='0.8'/%3E%3Ccircle cx='80' cy='40' r='4' fill='none' stroke='%23B08D57' stroke-width='0.8'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23lace-env)'/%3E%3C/svg%3E");
+            background-size: 400px 400px;
             background-repeat: repeat;
             opacity: 0.5;
             pointer-events: none;
@@ -643,10 +643,10 @@
             width: 100%;
             height: 100%;
             background-color: rgba(244, 233, 228, 0.3);
-            background-image: url('kr1.png');
-            background-size: 500px 500px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' opacity='0.12'%3E%3Cdefs%3E%3Cpattern id='lace-rsvp' x='0' y='0' width='70' height='70' patternUnits='userSpaceOnUse'%3E%3Cpath d='M35 10 Q42 20 49 10 Q56 0 63 10 L63 20 Q73 25 63 35 Q53 45 63 55 L63 65 Q56 75 49 65 Q42 55 35 65 L35 55 Q25 45 35 35 Q45 25 35 20 Z' fill='none' stroke='%23D2A3A9' stroke-width='1'/%3E%3Ccircle cx='49' cy='35' r='6' fill='none' stroke='%23D2A3A9' stroke-width='0.7'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23lace-rsvp)'/%3E%3C/svg%3E");
+            background-size: 400px 400px;
             background-repeat: repeat;
-            opacity: 0.25;
+            opacity: 0.35;
             pointer-events: none;
             z-index: 0;
         }
@@ -1215,7 +1215,7 @@
             else s.classList.remove('active-slide');
         });
         updateNav(0);
-        console.log('Сайт приглашения — Алия & Алишер (кружево увеличено)');
+        console.log('Сайт приглашения — Алия & Алишер (встроенное кружево)');
     </script>
 
 </body>
