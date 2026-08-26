@@ -1,1208 +1,922 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Приглашение — Алия &amp; Алишер</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на свадьбу — Synodica.studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        /* ============================================================
-           БАЗОВЫЕ СТИЛИ
-           ============================================================ */
+        /* ==================== ОБЩИЕ СТИЛИ ==================== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #F5F0EB;
+            color: #2D2D2D;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .script-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            font-weight: 400;
+            color: #8B3A3A;
+            text-align: center;
+            margin-bottom: 20px;
         }
 
-        body,
-        html {
+        /* ==================== ХЕДЕР ==================== */
+        .header {
+            padding: 25px 0;
+            text-align: center;
+            border-bottom: 1px solid #E8DDD3;
+            background: #F5F0EB;
+        }
+        .logo {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: #8B3A3A;
+        }
+        .logo-subtitle {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #A07A6E;
+            margin-top: -5px;
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            position: relative;
+            padding: 80px 0 60px;
+            text-align: center;
+            background-color: #FDF8F3;
+            background-image: url('images/back.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: #F9F4EC;
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-            color: #3A3A3A;
+            background: rgba(255, 255, 255, 0.15);
+            pointer-events: none;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        .hero .script-title {
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+        }
+        .hero-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #f5ebe0;
+            margin-top: 5px;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.2);
+        }
+
+        /* ==================== СТОРИ (УЗНАЛИ?) ==================== */
+        .story {
+            position: relative;
+            padding: 50px 0 30px;
+            background: #F4EDE6;
             overflow: hidden;
         }
-
-        /* ---------- ОСНОВНОЙ КОНТЕЙНЕР С ПРОКРУТКОЙ ---------- */
-        .app {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow-y: scroll;
-            scroll-snap-type: y mandatory;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            background: #F9F4EC;
-        }
-
-        /* ---------- СЛАЙДЫ ---------- */
-        .slide {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            min-height: 100vh;
-            scroll-snap-align: start;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 24px 24px 80px 24px;
-            overflow-y: auto;
-            background: #F9F4EC;
-            opacity: 0.2;
-            transition: opacity 0.9s ease;
-        }
-        .slide.active-slide {
-            opacity: 1;
-        }
-
-        .slide-content {
-            max-width: 420px;
-            width: 100%;
+        .story-text {
+            max-width: 600px;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            flex: 1;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #3D3D3D;
+            font-weight: 300;
+            background: rgba(255,255,255,0.3);
+            padding: 20px 30px;
+            border-radius: 16px;
+            backdrop-filter: blur(4px);
+        }
+        .hand-drawn-arrow {
+            font-size: 2.5rem;
+            text-align: center;
+            color: #8B3A3A;
+            margin-top: 15px;
+            opacity: 0.6;
+        }
+
+        /* КРУЖЕВНАЯ ПОЛОСА (разделитель) */
+        .lace-divider {
+            text-align: center;
+            margin: 10px auto 20px;
+            max-width: 400px;
+            height: 40px;
+            background-image: url('images/kr1.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.6;
+        }
+        .lace-divider2 {
+            text-align: center;
+            margin: 10px auto 20px;
+            max-width: 300px;
+            height: 30px;
+            background-image: url('images/kr2.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.6;
+        }
+
+        /* ==================== ДАТА (вишнёвый фон) С КРУЖЕВНОЙ РАМКОЙ ==================== */
+        .date-block {
+            position: relative;
+            padding: 50px 0 40px;
+            background: #8B3A3A;
+            color: #fff;
+        }
+        /* Рамка накладывается поверх фона через псевдоэлемент */
+        .date-block::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            background-image: url('images/an1.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.25;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .date-block .container {
             position: relative;
             z-index: 2;
         }
+        .date-block .script-title {
+            color: #FAD7A0;
+        }
+        .date-text {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .date-time {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: #FAD7A0;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        .calendar {
+            max-width: 400px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(4px);
+            padding: 20px;
+            border-radius: 16px;
+        }
+        .calendar-header {
+            text-align: center;
+            font-weight: 500;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            text-align: center;
+        }
+        .day {
+            font-weight: 600;
+            font-size: 0.7rem;
+            color: #FAD7A0;
+        }
+        .day-num {
+            font-size: 0.9rem;
+            padding: 6px 0;
+            border-radius: 50%;
+            background: transparent;
+            transition: background 0.2s;
+        }
+        .day-num.selected {
+            background: #FAD7A0;
+            color: #8B3A3A;
+            font-weight: 700;
+        }
+        .day-num.empty {
+            visibility: hidden;
+        }
+        .calendar-heart {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 1.5rem;
+        }
 
-        /* ---------- ДЕКОРАТИВНЫЕ ФОНЫ ---------- */
-        .slide::before {
-            content: '';
+        /* ==================== ЛОКАЦИЯ ==================== */
+        .location {
+            padding: 40px 0;
+            background: #FBF7F2;
+        }
+        .location-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .location-text {
+            max-width: 500px;
+            text-align: center;
+            font-size: 1rem;
+        }
+        .btn-map {
+            background: #8B3A3A;
+            color: #fff;
+            border: none;
+            padding: 12px 36px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-map:hover {
+            background: #6f2d2d;
+        }
+
+        /* ==================== КОНВЕРТ С КРУЖЕВНЫМ УЗОРОМ ==================== */
+        .envelope-section {
+            padding: 50px 0;
+            background: #F5F0EB;
+            text-align: center;
+        }
+        .envelope-wrapper {
+            position: relative;
+            width: 340px;
+            height: 230px;
+            margin: 20px auto;
+            background-color: #D4C5B2;
+            /* Кружевной узор поверх конверта */
+            background-image: url('images/kr3.png');
+            background-size: 70% 70%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-blend-mode: multiply;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+            cursor: pointer;
+            transition: transform 0.5s ease;
+            perspective: 1000px;
+        }
+        .envelope-back, .envelope-top, .envelope-bottom, .envelope-left, .envelope-right {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            background-image:
-                /* кружевной узор — повторяющиеся линии */
-                repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(201, 168, 124, 0.04) 40px, rgba(201, 168, 124, 0.04) 41px),
-                repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(201, 168, 124, 0.04) 40px, rgba(201, 168, 124, 0.04) 41px),
-                /* акварельные разводы */
-                radial-gradient(ellipse at 20% 30%, rgba(210, 163, 169, 0.08) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 70%, rgba(143, 158, 139, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(255, 215, 150, 0.05) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Золотые блёстки (мелкие точки) */
-        .slide::after {
-            content: '';
-            position: absolute;
-            top: -10%;
-            right: -10%;
-            width: 70%;
-            height: 70%;
-            background-image: radial-gradient(circle, rgba(201, 168, 124, 0.15) 1px, transparent 1px);
-            background-size: 30px 30px;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.4;
-        }
-
-        /* ---------- ПЛАВАЮЩИЙ БРЕНДИНГ ---------- */
-        .brand-footer {
-            position: fixed;
-            bottom: 76px;
-            right: 20px;
-            z-index: 50;
-            text-align: right;
-            pointer-events: none;
-            font-family: 'Cormorant Garamond', serif;
-            color: rgba(176, 141, 87, 0.4);
-            line-height: 1.2;
-            text-shadow: 0 0 12px rgba(249, 244, 236, 0.9);
-            opacity: 0.7;
-        }
-        .brand-footer .brand-name {
-            font-size: 1.1rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            display: block;
-        }
-        .brand-footer .brand-sub {
-            font-size: 0.45rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: rgba(139, 139, 139, 0.5);
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-            display: block;
-            margin-top: 1px;
-        }
-
-        /* ---------- ОБЩИЕ КОМПОНЕНТЫ (элегантные) ---------- */
-        .ornate-frame {
-            position: relative;
-            padding: 32px 24px;
-            background: rgba(255, 252, 248, 0.5);
-            backdrop-filter: blur(4px);
-            border-radius: 40px 40px 40px 0;
-            border: 1px solid rgba(201, 168, 124, 0.3);
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.04), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
-            width: 100%;
-            transition: all 0.3s;
-        }
-        /* Кружевная рамка — сложный узор */
-        .ornate-frame::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border-radius: 48px 48px 48px 0;
-            pointer-events: none;
-            background-image:
-                repeating-linear-gradient(0deg, transparent, transparent 8px, rgba(201, 168, 124, 0.15) 8px, rgba(201, 168, 124, 0.15) 9px),
-                repeating-linear-gradient(90deg, transparent, transparent 8px, rgba(201, 168, 124, 0.15) 8px, rgba(201, 168, 124, 0.15) 9px);
-            background-size: 16px 16px;
-            mask-image: radial-gradient(ellipse at center, transparent 60%, black 100%);
-            -webkit-mask-image: radial-gradient(ellipse at center, transparent 60%, black 100%);
-        }
-        .ornate-frame::after {
-            content: '❧';
-            position: absolute;
-            bottom: -12px;
-            right: 20px;
-            color: #C9A87C;
-            font-size: 1.8rem;
-            opacity: 0.3;
-            font-family: 'Cormorant Garamond', serif;
-            transform: rotate(15deg);
-        }
-        .ornate-frame--sage {
-            border-color: rgba(143, 158, 139, 0.35);
-        }
-        .ornate-frame--sage::before {
-            border-color: rgba(143, 158, 139, 0.2);
-        }
-        .ornate-frame--rose {
-            border-color: rgba(210, 163, 169, 0.4);
-        }
-        .ornate-frame--rose::before {
-            border-color: rgba(210, 163, 169, 0.25);
-        }
-
-        .page-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 500;
-            font-size: 2.4rem;
-            color: #4A5A44;
-            letter-spacing: 3px;
-            margin-bottom: 12px;
-            position: relative;
-            display: inline-block;
-        }
-        .page-title::after {
-            content: '';
-            display: block;
-            width: 80%;
-            height: 2px;
-            background: linear-gradient(90deg, #C9A87C, transparent);
-            margin-top: 8px;
-        }
-
-        /* ============================================================
-           СЛАЙД 0: КОНВЕРТ (роскошный, с кружевом и золотом)
-           ============================================================ */
-        #slide-0 {
-            justify-content: center;
-            padding: 20px;
-            background: radial-gradient(ellipse at center, #F9F4EC 0%, #F3E9D8 100%);
-        }
-        #slide-0::before {
-            background-image:
-                radial-gradient(ellipse at 20% 30%, rgba(210, 163, 169, 0.15) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 70%, rgba(201, 168, 124, 0.12) 0%, transparent 50%),
-                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' opacity='0.07'%3E%3Cpath d='M70 20 Q90 40 110 20 Q130 0 150 20 L150 60 Q170 80 150 100 Q130 120 150 140 L150 180 Q130 200 110 180 Q90 160 70 180 L70 140 Q50 120 70 100 Q90 80 70 60 Z' fill='none' stroke='%23C9A87C' stroke-width='1'/%3E%3Ccircle cx='100' cy='100' r='40' fill='none' stroke='%23C9A87C' stroke-width='0.8'/%3E%3Ccircle cx='100' cy='100' r='25' fill='none' stroke='%23C9A87C' stroke-width='0.8'/%3E%3C/svg%3E");
-            background-size: 180px 180px, 180px 180px, 150px 150px;
-            background-position: 0 0, 0 0, center;
-        }
-        #slide-0::after {
-            background-image: radial-gradient(circle, rgba(201, 168, 124, 0.2) 2px, transparent 2px);
-            background-size: 40px 40px;
-        }
-
-        .envelope-wrapper {
-            width: 100%;
-            max-width: 340px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-        /* Золотые вензеля по углам */
-        .envelope-wrapper .corner-decoration {
-            position: absolute;
-            font-size: 2.8rem;
-            color: #C9A87C;
-            opacity: 0.2;
-            font-family: 'Cormorant Garamond', serif;
-            pointer-events: none;
-        }
-        .envelope-wrapper .corner-decoration.tl {
-            top: -20px;
-            left: -20px;
-            transform: rotate(-45deg);
-        }
-        .envelope-wrapper .corner-decoration.tr {
-            top: -20px;
-            right: -20px;
-            transform: rotate(45deg);
-        }
-        .envelope-wrapper .corner-decoration.bl {
-            bottom: -20px;
-            left: -20px;
-            transform: rotate(135deg);
-        }
-        .envelope-wrapper .corner-decoration.br {
-            bottom: -20px;
-            right: -20px;
-            transform: rotate(-135deg);
-        }
-
-        .envelope {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 4/3;
-            background: linear-gradient(145deg, #D2A3A9, #c49096);
-            border-radius: 16px 16px 12px 12px;
-            box-shadow: 0 24px 64px rgba(210, 163, 169, 0.35), inset 0 0 0 3px rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: transform 0.4s cubic-bezier(0.34, 1.3, 0.64, 1), box-shadow 0.4s;
-            overflow: visible;
-        }
-        .envelope:active {
-            transform: scale(0.97);
-        }
-        .envelope.open {
-            box-shadow: 0 30px 80px rgba(210, 163, 169, 0.45);
-        }
-
-        /* Кружевная кайма конверта (SVG узор) */
-        .envelope::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border-radius: 20px 20px 16px 16px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120' opacity='0.2'%3E%3Cpath d='M10 10 L110 10 L110 110 L10 110 Z' fill='none' stroke='%23C9A87C' stroke-width='1.2' stroke-dasharray='6 6'/%3E%3Ccircle cx='60' cy='60' r='35' fill='none' stroke='%23C9A87C' stroke-width='1' stroke-dasharray='4 4'/%3E%3Cpath d='M30 30 L90 30 L90 90 L30 90 Z' fill='none' stroke='%23C9A87C' stroke-width='0.8' stroke-dasharray='3 3'/%3E%3C/svg%3E");
-            background-size: 40px 40px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .envelope .flap {
-            position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 50%;
-            background: linear-gradient(145deg, #C9969C, #b8848a);
-            clip-path: polygon(0 0, 100% 0, 50% 100%);
-            transform-origin: top;
-            transition: transform 0.9s cubic-bezier(0.33, 1, 0.68, 1);
-            z-index: 2;
-            border-radius: 16px 16px 0 0;
         }
-        .envelope.open .flap {
+        .envelope-left {
+            background-color: #E6D9CA;
+            clip-path: polygon(0 0, 52% 50%, 0 100%);
+            z-index: 3;
+        }
+        .envelope-right {
+            background-color: #E6D9CA;
+            clip-path: polygon(100% 0, 100% 100%, 48% 50%);
+            z-index: 3;
+        }
+        .envelope-bottom {
+            background-color: #DBCDBE;
+            clip-path: polygon(0 100%, 100% 100%, 50% 48%);
+            z-index: 4;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.02);
+        }
+        .envelope-top {
+            background-color: #D4C5B2;
+            clip-path: polygon(0 0, 100% 0, 50% 52%);
+            z-index: 5;
+            transform-origin: top center;
+            transition: transform 0.8s cubic-bezier(0.33, 1, 0.68, 1), z-index 0.2s;
+        }
+        .envelope-wrapper.open .envelope-top {
             transform: rotateX(180deg);
+            z-index: 1;
+            background-color: #CBBBA8;
         }
-
-        .envelope .seal {
+        .wax-seal {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -45%);
-            width: 68px;
-            height: 68px;
-            background: radial-gradient(circle at 30% 30%, #E6D5B8, #B08D57);
+            transform: translate(-50%, -40%) scale(1);
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle at 30% 30%, #F7E5B0, #D4AF37 60%, #B08D57 100%);
             border-radius: 50%;
-            z-index: 3;
+            z-index: 6;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(201, 168, 124, 0.5), inset 0 2px 6px rgba(255,255,255,0.4);
+            transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8rem;
             color: #fff;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            box-shadow: 0 8px 28px rgba(176, 141, 87, 0.5), inset 0 2px 0 rgba(255, 255, 255, 0.6);
-            transition: all 0.6s ease;
-            border: 3px solid rgba(255, 215, 150, 0.4);
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+            cursor: pointer;
         }
-        .envelope.open .seal {
-            transform: translate(-50%, -45%) scale(0);
+        .envelope-wrapper.open .wax-seal {
+            transform: translate(-50%, -40%) scale(0);
             opacity: 0;
             pointer-events: none;
         }
-
-        .envelope .letter-preview {
+        .letter-card {
             position: absolute;
-            top: 8%;
-            left: 8%;
-            width: 84%;
-            height: 84%;
-            background: #FDFBF7;
-            border-radius: 6px;
+            top: 8px;
+            left: 12px;
+            width: 316px;
+            height: 210px;
+            background-color: #8B3A3A;
+            color: #F5F0EB;
             padding: 20px 16px;
+            border-radius: 4px;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: transform 1s cubic-bezier(0.34, 1.3, 0.64, 1) 0.6s,
+                        height 1s cubic-bezier(0.34, 1.3, 0.64, 1) 0.6s,
+                        z-index 0s 0.6s;
+            overflow: hidden;
+        }
+        .envelope-wrapper.open .letter-card {
+            z-index: 10;
+            transform: translateY(-340px);
+            height: 500px;
+        }
+        .letter-inner {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             text-align: center;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-            transform: translateY(12px);
-            transition: transform 0.8s cubic-bezier(0.34, 1.3, 0.64, 1) 0.3s,
-                opacity 0.8s ease 0.3s;
+            height: 100%;
+            justify-content: space-between;
             opacity: 0;
-            z-index: 1;
-            border: 1px solid rgba(201, 168, 124, 0.2);
+            transition: opacity 0.5s ease 1.4s;
         }
-        .envelope.open .letter-preview {
-            transform: translateY(-70px);
+        .envelope-wrapper.open .letter-inner {
             opacity: 1;
         }
-        .letter-preview .names {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            font-weight: 600;
-            color: #4A5A44;
-            line-height: 1.2;
-        }
-        .letter-preview .names .ampersand {
-            font-size: 1.6rem;
-            color: #C9A87C;
-        }
-        .letter-preview .date-block {
-            margin-top: 10px;
+        .letter-subtitle {
             font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            color: #8F9E8B;
-            background: rgba(143, 158, 139, 0.08);
-            padding: 4px 18px;
-            border-radius: 30px;
-            border: 1px solid rgba(201, 168, 124, 0.2);
-        }
-        .letter-preview .short-line {
-            margin-top: 12px;
-            font-size: 0.7rem;
-            color: #aaa;
-            letter-spacing: 1px;
-            font-style: italic;
-        }
-
-        .envelope-hint {
-            margin-top: 20px;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: #C9A87C;
-            opacity: 0.5;
-            transition: opacity 0.5s;
-            cursor: pointer;
-            border-bottom: 1px dashed rgba(201, 168, 124, 0.2);
-            padding-bottom: 6px;
-        }
-        .envelope-hint.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        /* ============================================================
-           СЛАЙДЫ 1–4: ОСНОВНОЙ КОНТЕНТ
-           ============================================================ */
-        /* Текст приглашения */
-        .invite-text-block {
-            font-size: 0.95rem;
-            line-height: 2.1;
-            color: #3A3A3A;
-            font-weight: 300;
-            text-align: left;
-        }
-        .invite-text-block .greeting {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            color: #4A5A44;
-            font-weight: 500;
-        }
-        .invite-text-block .signature {
-            margin-top: 22px;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.6rem;
-            color: #4A5A44;
-            text-align: right;
-            font-weight: 400;
-            letter-spacing: 2px;
-        }
-        .invite-text-block .signature::before {
-            content: '— ';
-            color: #C9A87C;
-        }
-
-        /* Локация */
-        .venue-card {
-            text-align: center;
-            width: 100%;
-        }
-        .venue-card .venue-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
-            color: #4A5A44;
-            font-weight: 500;
-            letter-spacing: 2px;
-        }
-        .venue-card .venue-address {
-            font-size: 0.85rem;
-            color: #8F9E8B;
             text-transform: uppercase;
             letter-spacing: 3px;
-            margin-top: 2px;
+            color: #FAD7A0;
         }
-        .venue-card .venue-time {
-            font-size: 0.75rem;
-            color: #aaa;
-            margin-top: 8px;
-            letter-spacing: 2px;
+        .letter-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: #fff;
+            margin: 5px 0;
         }
-        .venue-map-placeholder {
+        .letter-divider {
+            width: 40px;
+            height: 1px;
+            background-color: rgba(250, 215, 160, 0.4);
+            margin: 5px 0 10px;
+        }
+        .letter-invitation {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            font-weight: 300;
+            color: #E8DDD3;
+            max-width: 90%;
+        }
+        .letter-date-box {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 8px 0;
             width: 100%;
-            aspect-ratio: 4/3;
-            background: #E8EDE5;
-            border-radius: 24px;
-            margin: 16px 0;
+        }
+        .date-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(201, 168, 124, 0.2);
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' opacity='0.08'%3E%3Cpath d='M20 20 L80 20 L80 80 L20 80 Z' stroke='%23C9A87C' stroke-width='0.8' fill='none'/%3E%3Ccircle cx='50' cy='50' r='12' stroke='%23C9A87C' stroke-width='0.8' fill='none'/%3E%3Cpath d='M50 38 L50 62 M38 50 L62 50' stroke='%23C9A87C' stroke-width='0.8'/%3E%3C/svg%3E");
-            background-size: 60px 60px;
-            padding: 16px;
         }
-        .btn-map {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: #C9A87C;
+        .date-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            color: #FAD7A0;
+            font-weight: 500;
+        }
+        .date-month {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #D4C5B2;
+        }
+        .letter-location {
+            margin-top: 5px;
+        }
+        .loc-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-style: italic;
             color: #fff;
-            padding: 12px 32px;
-            border-radius: 50px;
+        }
+        .loc-details {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #D4C5B2;
+            margin-top: 3px;
+        }
+        .letter-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+            margin-top: 15px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.6s ease 2s, transform 0.6s ease 2s;
+        }
+        .envelope-wrapper.open .letter-actions {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .btn-2gis {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: transparent;
+            border: 1px solid #FAD7A0;
+            color: #FAD7A0 !important;
             text-decoration: none;
+            padding: 8px 12px;
             font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            border: none;
+            letter-spacing: 1px;
+            font-weight: 500;
+            border-radius: 4px;
+            transition: all 0.3s ease;
             cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
-            box-shadow: 0 6px 24px rgba(201, 168, 124, 0.3);
         }
-        .btn-map:active {
-            background: #b8956a;
-            transform: scale(0.96);
+        .btn-2gis:hover {
+            background: rgba(250, 215, 160, 0.1);
+        }
+        .btn-letter-next {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: #F5F0EB;
+            border: none;
+            color: #8B3A3A;
+            padding: 8px 12px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-letter-next:hover {
+            opacity: 0.9;
+        }
+        .envelope-hint {
+            font-size: 0.9rem;
+            color: #8B3A3A;
+            font-weight: 400;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
         }
 
-        /* Дресс-код */
-        .dress-note {
-            font-size: 0.85rem;
-            color: #555;
-            line-height: 1.9;
-            margin-bottom: 12px;
-            width: 100%;
+        /* ==================== ТАЙМИНГ ==================== */
+        .timing {
+            padding: 40px 0;
+            background: #F4EDE6;
         }
-        .dress-note .delicate {
-            display: block;
-            margin-top: 12px;
-            font-size: 0.8rem;
-            color: #8F9E8B;
-            font-style: italic;
-            padding: 12px 18px;
-            background: rgba(143, 158, 139, 0.05);
-            border-radius: 16px;
-            border-left: 4px solid #C9A87C;
-        }
-        .dress-swatches {
+        .timing-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 18px;
-            margin-top: 16px;
-            width: 100%;
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
         }
-        .dress-swatches .swatch-item {
+        .timing-item {
             background: #fff;
-            padding: 10px 10px 18px 10px;
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.04);
-            border-radius: 8px;
+            padding: 18px;
+            border-radius: 12px;
             text-align: center;
-            border-bottom: 5px solid #C9A87C;
-            transition: transform 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
         }
-        .dress-swatches .swatch-item:active {
-            transform: scale(0.96);
+        .timing-icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 6px;
         }
-        .dress-swatches .swatch-item .color-block {
-            width: 100%;
-            aspect-ratio: 1/1;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: rgba(255, 255, 255, 0.85);
-            font-weight: 400;
-        }
-        .dress-swatches .swatch-item .color-block--dusty-rose {
-            background: linear-gradient(135deg, #D2A3A9, #c49096);
-        }
-        .dress-swatches .swatch-item .color-block--sage {
-            background: linear-gradient(135deg, #8F9E8B, #7a8a76);
-        }
-        .dress-swatches .swatch-item .color-block--cream {
-            background: linear-gradient(135deg, #f5efe0, #ede5d4);
-            color: #8F9E8B;
-        }
-        .dress-swatches .swatch-item .color-block--lavender {
-            background: linear-gradient(135deg, #b8a4c9, #a892bc);
-        }
-        .dress-swatches .swatch-item .swatch-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #8F9E8B;
-            margin-top: 8px;
-            font-weight: 400;
-        }
-        .pantone-row {
-            display: flex;
-            gap: 18px;
-            justify-content: center;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        .pantone-row .mini-swatch {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-        }
-        .pantone-row .mini-swatch .circle {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-            transition: transform 0.2s;
-        }
-        .pantone-row .mini-swatch:active .circle {
-            transform: scale(0.92);
-        }
-        .pantone-row .mini-swatch .label {
-            font-size: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #8F9E8B;
-            margin-top: 6px;
+        .timing-text {
+            font-weight: 500;
         }
 
-        /* RSVP */
-        .rsvp-letter {
-            background: rgba(255, 252, 248, 0.6);
-            border: 1px solid rgba(210, 163, 169, 0.3);
-            border-radius: 30px 30px 12px 12px;
-            padding: 32px 24px;
-            box-shadow: 0 8px 48px rgba(210, 163, 169, 0.06);
-            position: relative;
-            width: 100%;
-            backdrop-filter: blur(4px);
+        /* ==================== RSVP ==================== */
+        .rsvp {
+            padding: 40px 0;
+            background: #FBF7F2;
         }
-        .rsvp-letter::before {
-            content: '❧';
-            position: absolute;
-            top: -16px;
-            left: 24px;
-            font-size: 2rem;
-            color: #C9A87C;
-            opacity: 0.2;
+        .rsvp-text {
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto 30px;
+            color: #555;
         }
-        .rsvp-letter::after {
-            content: '❧';
-            position: absolute;
-            bottom: -16px;
-            right: 24px;
-            font-size: 2rem;
-            color: #C9A87C;
-            opacity: 0.2;
-            transform: scaleX(-1);
-        }
-        .rsvp-form .form-group {
-            margin-bottom: 20px;
+        .rsvp-form {
+            max-width: 450px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
         .rsvp-form label {
-            display: block;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #8F9E8B;
-            margin-bottom: 4px;
-        }
-        .rsvp-form label .required {
-            color: #D2A3A9;
-            margin-left: 2px;
-        }
-        .rsvp-form input,
-        .rsvp-form select,
-        .rsvp-form textarea {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #E8EDE5;
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.7);
-            font-family: 'Inter', sans-serif;
+            font-weight: 500;
             font-size: 0.9rem;
-            outline: none;
-            transition: border 0.3s, box-shadow 0.3s;
-            backdrop-filter: blur(2px);
         }
-        .rsvp-form input:focus,
-        .rsvp-form select:focus,
-        .rsvp-form textarea:focus {
-            border-color: #C9A87C;
-            box-shadow: 0 0 0 4px rgba(201, 168, 124, 0.1);
+        .rsvp-form input[type="text"],
+        .rsvp-form input[type="number"] {
+            padding: 10px 14px;
+            border: 1px solid #D3C6BC;
+            border-radius: 8px;
+            font-size: 1rem;
         }
-        .rsvp-form textarea {
-            resize: vertical;
-            min-height: 64px;
+        .radio-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 400;
+            cursor: pointer;
         }
-        .rsvp-form .btn-submit {
-            width: 100%;
-            padding: 16px;
-            background: #C9A87C;
+        .radio-group input[type="radio"] {
+            width: 18px;
+            height: 18px;
+        }
+        .btn-rsvp {
+            background: #8B3A3A;
             color: #fff;
             border: none;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-weight: 400;
+            padding: 14px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
-            box-shadow: 0 6px 28px rgba(201, 168, 124, 0.3);
+            transition: background 0.3s;
+            margin-top: 6px;
         }
-        .rsvp-form .btn-submit:active {
-            background: #b8956a;
-            transform: scale(0.96);
+        .btn-rsvp:hover {
+            background: #6f2d2d;
         }
         .rsvp-success {
-            display: none;
             text-align: center;
-            padding: 20px 0;
-        }
-        .rsvp-success .emoji {
-            font-size: 3rem;
-        }
-        .rsvp-success p {
-            font-size: 1.1rem;
-            color: #4A5A44;
-            margin-top: 8px;
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 400;
-            letter-spacing: 2px;
-        }
-        .rsvp-info {
-            margin-top: 22px;
-            padding: 18px 20px;
-            background: rgba(143, 158, 139, 0.04);
-            border-radius: 20px;
-            font-size: 0.75rem;
-            line-height: 1.8;
-            color: #555;
-            border: 1px solid rgba(201, 168, 124, 0.1);
-        }
-        .rsvp-info strong {
-            color: #4A5A44;
-        }
-        .rsvp-info .no-children {
-            margin-top: 10px;
-            padding: 12px 16px;
-            background: rgba(210, 163, 169, 0.05);
-            border-radius: 16px;
-            border-left: 4px solid #C9A87C;
-            font-size: 0.75rem;
+            font-size: 1.2rem;
+            color: #8B3A3A;
+            padding: 20px;
+            background: #F4EDE6;
+            border-radius: 12px;
         }
 
-        /* ============================================================
-           НИЖНЯЯ НАВИГАЦИЯ
-           ============================================================ */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(249, 244, 236, 0.92);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-top: 1px solid rgba(201, 168, 124, 0.15);
-            display: flex;
-            justify-content: space-around;
-            padding: 6px 0 12px;
-            z-index: 99;
-            box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.02);
+        /* ==================== ФУТЕР ==================== */
+        .footer {
+            background: #2D2D2D;
+            color: #E8DDD3;
+            padding: 30px 0;
+            text-align: center;
         }
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #8F9E8B;
-            background: none;
-            border: none;
-            cursor: pointer;
-            transition: color 0.3s;
-            padding: 4px 8px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            min-width: 44px;
+        .footer-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8rem;
+            color: #FAD7A0;
         }
-        .nav-item svg {
-            width: 22px;
-            height: 22px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 1.5;
-            margin-bottom: 2px;
-            transition: stroke 0.3s;
+        .footer-links a {
+            color: #E8DDD3;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.9rem;
         }
-        .nav-item.active {
-            color: #C9A87C;
+        .footer-links a:hover {
+            color: #FAD7A0;
         }
-        .nav-item.active svg {
-            stroke: #C9A87C;
+        .footer-logo {
+            margin-top: 15px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
         }
 
-        /* ============================================================
-           АДАПТИВ
-           ============================================================ */
-        @media (max-width: 480px) {
-            .slide {
-                padding: 16px 16px 70px 16px;
-            }
-            .letter-preview .names {
-                font-size: 1.6rem;
-            }
-            .invite-text-block {
-                font-size: 0.85rem;
-            }
-            .dress-swatches {
-                grid-template-columns: 1fr 1fr;
-                gap: 12px;
-            }
-            .page-title {
-                font-size: 2rem;
-            }
-            .envelope-wrapper {
-                max-width: 290px;
-            }
-            .nav-item {
-                font-size: 0.4rem;
-            }
-            .nav-item svg {
-                width: 18px;
-                height: 18px;
-            }
-            .ornate-frame {
-                padding: 20px 16px;
-            }
-            .envelope-wrapper .corner-decoration {
-                font-size: 2rem;
-            }
-            .envelope .seal {
-                width: 56px;
-                height: 56px;
-                font-size: 0.9rem;
-            }
-        }
-        @media (min-width: 600px) {
-            .slide-content {
-                max-width: 560px;
-            }
-        }
-
-        /* Скрываем скроллбар */
-        .app::-webkit-scrollbar {
-            display: none;
-        }
-        .app {
-            scrollbar-width: none;
-            -ms-overflow-style: none;
+        /* ==================== АДАПТИВ ==================== */
+        @media (max-width: 600px) {
+            .script-title { font-size: 2.4rem; }
+            .hero .script-title { font-size: 3rem; }
+            .hero-sub { font-size: 1rem; }
+            .envelope-wrapper { width: 290px; height: 200px; }
+            .letter-card { width: 266px; height: 180px; padding: 16px 12px; }
+            .envelope-wrapper.open .letter-card { transform: translateY(-290px); height: 430px; }
+            .letter-names { font-size: 1.8rem; }
+            .wax-seal { width: 60px; height: 60px; font-size: 1.5rem; }
+            .timing-grid { grid-template-columns: 1fr 1fr; }
+            .date-text { font-size: 1.6rem; }
+            .date-time { font-size: 1.1rem; }
+            .lace-divider { max-width: 300px; height: 30px; }
+            .lace-divider2 { max-width: 200px; height: 25px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="app" id="app">
-
-        <!-- ============================================================
-        БРЕНДИНГ
-        ============================================================ -->
-        <div class="brand-footer">
-            <span class="brand-name">synodica.studio</span>
-            <span class="brand-sub">Сайты-пригласительные</span>
+    <!-- ХЕДЕР -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">Synodica.studio</div>
+            <div class="logo-subtitle">сайты-пригласительные</div>
         </div>
+    </header>
 
-        <!-- ============================================================
-        СЛАЙД 0: КОНВЕРТ (роскошный)
-        ============================================================ -->
-        <section class="slide active-slide" id="slide-0" data-index="0">
-            <div class="slide-content">
-                <div class="envelope-wrapper">
-                    <!-- Золотые вензеля по углам -->
-                    <span class="corner-decoration tl">❧</span>
-                    <span class="corner-decoration tr">❧</span>
-                    <span class="corner-decoration bl">❧</span>
-                    <span class="corner-decoration br">❧</span>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="script-title">Мы женимся!</h1>
+            <p class="hero-sub">Приглашаем вас разделить этот день с нами</p>
+        </div>
+    </section>
 
-                    <div class="envelope" id="envelope" onclick="openEnvelope()">
-                        <div class="flap"></div>
-                        <div class="seal">A&amp;A</div>
-                        <div class="letter-preview">
-                            <div class="names">
-                                Алия <span class="ampersand">&amp;</span> Алишер
+    <!-- БЛОК "УЗНАЛИ?" (История) с кружевной полосой -->
+    <section class="story">
+        <div class="container">
+            <h2 class="script-title">Узнали?</h2>
+            <div class="lace-divider"></div> <!-- кружевная полоса kr1 -->
+            <p class="story-text">Мы встретились в маленьком кафе на углу, где кофе пах корицей, а вывеска обещала «домашний уют». С тех пор прошло 5 лет, и мы решили, что хотим разделить эту уютную историю с вами.</p>
+            <div class="hand-drawn-arrow">→</div>
+            <div class="lace-divider2"></div> <!-- кружевная полоса kr2 -->
+        </div>
+    </section>
+
+    <!-- БЛОК "ДАТА" с кружевной рамкой -->
+    <section class="date-block">
+        <div class="container">
+            <h2 class="script-title">Ждём вас</h2>
+            <p class="date-text">12 сентября 2026 года</p>
+            <p class="date-time">в 16:00 (4 часа вечера)</p>
+            <div class="calendar">
+                <div class="calendar-header">Сентябрь 2026</div>
+                <div class="calendar-grid">
+                    <span class="day">П</span><span class="day">В</span><span class="day">С</span>
+                    <span class="day">Ч</span><span class="day">П</span><span class="day">С</span><span class="day">В</span>
+                    <span class="day-num empty"></span>
+                    <span class="day-num">1</span><span class="day-num">2</span><span class="day-num">3</span>
+                    <span class="day-num">4</span><span class="day-num">5</span><span class="day-num">6</span>
+                    <span class="day-num">7</span><span class="day-num">8</span><span class="day-num">9</span>
+                    <span class="day-num">10</span><span class="day-num">11</span><span class="day-num selected">12</span>
+                    <span class="day-num">13</span><span class="day-num">14</span><span class="day-num">15</span>
+                    <span class="day-num">16</span><span class="day-num">17</span><span class="day-num">18</span>
+                    <span class="day-num">19</span><span class="day-num">20</span><span class="day-num">21</span>
+                    <span class="day-num">22</span><span class="day-num">23</span><span class="day-num">24</span>
+                    <span class="day-num">25</span><span class="day-num">26</span><span class="day-num">27</span>
+                    <span class="day-num">28</span><span class="day-num">29</span><span class="day-num">30</span>
+                </div>
+                <div class="calendar-heart">❤️</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК "ЛОКАЦИЯ" -->
+    <section class="location">
+        <div class="container">
+            <h2 class="script-title">Локация</h2>
+            <div class="location-content">
+                <div class="polaroid">
+                    <img src="images/1.jpg" alt="усадьба" class="polaroid-img" style="max-width: 280px; border-radius: 4px;">
+                    <span class="polaroid-caption">Усадьба «Тихий берег»</span>
+                </div>
+                <p class="location-text">Мы будем ждать вас в живописном месте на берегу озера. Адрес: ул. Береговая, 15</p>
+                <button class="btn-map" onclick="window.open('https://go.2gis.com/your-link','_blank')">Открыть карту</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК КОНВЕРТА С КРУЖЕВНЫМ УЗОРОМ -->
+    <section class="envelope-section">
+        <div class="container">
+            <h2 class="script-title">Приглашение</h2>
+            <div class="envelope-hint">Нажмите, чтобы открыть конверт</div>
+            <div class="envelope-wrapper" id="envelope">
+                <div class="envelope-back"></div>
+                <div class="letter-card" id="letterCard">
+                    <div class="letter-inner">
+                        <span class="letter-subtitle">Приглашение</span>
+                        <h1 class="letter-names">Имя & Имя</h1>
+                        <div class="letter-divider"></div>
+                        <p class="letter-invitation">
+                            Дорогие близкие и друзья!<br>
+                            Приглашаем вас разделить с нами<br>
+                            начало нашей семейной истории.
+                        </p>
+                        <div class="letter-date-box">
+                            <div class="date-item">
+                                <span class="date-num">12</span>
+                                <span class="date-month">Сентября</span>
                             </div>
-                            <div class="date-block">27 июля 2026</div>
-                            <div class="short-line">Приглашаем вас разделить нашу радость</div>
+                            <div class="date-item">
+                                <span class="date-num">2026</span>
+                                <span class="date-month">Суббота</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="envelope-hint" id="envelopeHint">Нажмите на конверт, чтобы открыть</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================================================
-        СЛАЙД 1: ПРИГЛАШЕНИЕ
-        ============================================================ -->
-        <section class="slide" id="slide-1" data-index="1">
-            <div class="slide-content">
-                <div class="ornate-frame ornate-frame--rose">
-                    <h2 class="page-title">Приглашение</h2>
-                    <div class="invite-text-block">
-                        <p class="greeting">Дорогие близкие, друзья!</p>
-                        <p style="margin-top:14px;">
-                            Мы рады разделить с вами нашу радость. Приглашаем вас на нашу свадьбу
-                            и очень надеемся, что вы будете с нами в такой важный момент.
-                        </p>
-                        <p style="margin-top:14px;">
-                            Ваше присутствие сделает этот день по-настоящему светлым и тёплым.
-                        </p>
-                        <div class="signature">
-                            Алия &amp; Алишер
+                        <div class="letter-location">
+                            <span class="loc-title">Усадьба «Тихий берег»</span>
+                            <span class="loc-details">Сбор гостей в 16:00</span>
+                        </div>
+                        <div class="letter-actions">
+                            <a href="https://go.2gis.com/your-link" target="_blank" class="btn-2gis">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <span>Открыть в 2ГИС</span>
+                            </a>
+                            <button class="btn-letter-next" onclick="document.getElementById('rsvp').scrollIntoView({behavior:'smooth'});">
+                                <span>Подтвердить присутствие</span>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </button>
                         </div>
                     </div>
                 </div>
+                <div class="envelope-left"></div>
+                <div class="envelope-right"></div>
+                <div class="envelope-bottom"></div>
+                <div class="envelope-top" id="envelopeTop"></div>
+                <div class="wax-seal" id="waxSeal">❤</div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ============================================================
-        СЛАЙД 2: ЛОКАЦИЯ
-        ============================================================ -->
-        <section class="slide" id="slide-2" data-index="2">
-            <div class="slide-content">
-                <div class="ornate-frame ornate-frame--sage">
-                    <h2 class="page-title">Локация</h2>
-                    <div class="venue-card">
-                        <div class="venue-name">Ресторан «Сауле»</div>
-                        <div class="venue-address">ул. Бакинская, 5</div>
-                        <div class="venue-time">Сбор гостей в 16:00</div>
-                        <div class="venue-map-placeholder">
-                            <span style="font-size:0.7rem; color:#8F9E8B;">📍 ул. Бакинская, 5</span>
-                        </div>
-                        <button class="btn-map" onclick="openMap()">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            Как добраться
-                        </button>
-                    </div>
+    <!-- БЛОК "ВО СКОЛЬКО?" -->
+    <section class="timing">
+        <div class="container">
+            <h2 class="script-title">Во сколько?</h2>
+            <div class="timing-grid">
+                <div class="timing-item">
+                    <span class="timing-icon">🕰️</span>
+                    <span class="timing-text">16:00 — сбор гостей</span>
+                </div>
+                <div class="timing-item">
+                    <span class="timing-icon">💍</span>
+                    <span class="timing-text">17:00 — церемония</span>
+                </div>
+                <div class="timing-item">
+                    <span class="timing-icon">🍽️</span>
+                    <span class="timing-text">18:00 — банкет</span>
+                </div>
+                <div class="timing-item">
+                    <span class="timing-icon">🎉</span>
+                    <span class="timing-text">до последнего гостя</span>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ============================================================
-        СЛАЙД 3: ДРЕСС-КОД
-        ============================================================ -->
-        <section class="slide" id="slide-3" data-index="3">
-            <div class="slide-content">
-                <div class="ornate-frame ornate-frame--rose">
-                    <h2 class="page-title">Дресс-код</h2>
-                    <div class="dress-note">
-                        Вдохновение — винтажный романтизм. Приветствуются пастельные тона, цветочные принты, лёгкие ткани.
-                        <span class="delicate">
-                            ✦ С большим уважением просим вас воздержаться от белого и красного цветов в нарядах —<br>
-                            мы будем очень благодарны за понимание.
-                        </span>
-                    </div>
-                    <div class="dress-swatches">
-                        <div class="swatch-item">
-                            <div class="color-block color-block--dusty-rose">Пыльная роза</div>
-                            <div class="swatch-label">Пыльная роза</div>
-                        </div>
-                        <div class="swatch-item">
-                            <div class="color-block color-block--sage">Шалфей</div>
-                            <div class="swatch-label">Шалфей</div>
-                        </div>
-                        <div class="swatch-item">
-                            <div class="color-block color-block--cream">Кремовый</div>
-                            <div class="swatch-label">Кремовый</div>
-                        </div>
-                        <div class="swatch-item">
-                            <div class="color-block color-block--lavender">Лаванда</div>
-                            <div class="swatch-label">Лаванда</div>
-                        </div>
-                    </div>
-                    <div class="pantone-row">
-                        <div class="mini-swatch" onclick="alert('Pantone 14-1310 – Dusty Rose')">
-                            <div class="circle" style="background:#D2A3A9;"></div>
-                            <span class="label">Пыльная роза</span>
-                        </div>
-                        <div class="mini-swatch" onclick="alert('Pantone 16-0220 – Sage Green')">
-                            <div class="circle" style="background:#8F9E8B;"></div>
-                            <span class="label">Шалфей</span>
-                        </div>
-                        <div class="mini-swatch" onclick="alert('Pantone 12-0815 – Vanilla Cream')">
-                            <div class="circle" style="background:#FDFBF7; border-color:#ddd;"></div>
-                            <span class="label">Сливки</span>
-                        </div>
-                    </div>
-                </div>
+    <!-- БЛОК "RSVP" -->
+    <section class="rsvp" id="rsvp">
+        <div class="container">
+            <h2 class="script-title">Подтвердите присутствие</h2>
+            <p class="rsvp-text">Пожалуйста, сообщите нам, сможете ли вы разделить этот день с нами, до 28 августа 2026 года.</p>
+            <form id="rsvp-form" class="rsvp-form">
+                <label for="name">Ваше имя</label>
+                <input type="text" id="name" name="name" placeholder="Иван Иванов" required>
+                <label for="guests">Количество гостей</label>
+                <input type="number" id="guests" name="guests" min="1" max="5" value="1">
+                <label class="radio-group">
+                    <input type="radio" name="attendance" value="yes" checked>
+                    <span>С удовольствием приду</span>
+                </label>
+                <label class="radio-group">
+                    <input type="radio" name="attendance" value="no">
+                    <span>К сожалению, не смогу</span>
+                </label>
+                <button type="submit" class="btn-rsvp">Отправить</button>
+            </form>
+            <div id="rsvp-success" class="rsvp-success" style="display:none;">
+                <p>Спасибо! Ваш ответ принят. 🎉</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ============================================================
-        СЛАЙД 4: RSVP
-        ============================================================ -->
-        <section class="slide" id="slide-4" data-index="4">
-            <div class="slide-content">
-                <div class="rsvp-letter">
-                    <h2 class="page-title" style="margin-top:0;">Подтверждение</h2>
-                    <p style="font-size:0.8rem; color:#555; margin-bottom:18px;">Пожалуйста, ответьте до <strong>15 мая 2027</strong></p>
-                    <form class="rsvp-form" id="rsvpForm" onsubmit="submitRSVP(event)">
-                        <div class="form-group">
-                            <label for="name">Ваше имя <span class="required">*</span></label>
-                            <input type="text" id="name" placeholder="Иван Петров" required />
-                        </div>
-                        <div class="form-group">
-                            <label for="guests">Количество гостей <span class="required">*</span></label>
-                            <select id="guests" required>
-                                <option value="1">1</option>
-                                <option value="2" selected>2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="allergies">Аллергии / особенности питания</label>
-                            <input type="text" id="allergies" placeholder="Например: безглютеновое, орехи, вегетарианское..." />
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Ваши пожелания</label>
-                            <textarea id="message" placeholder="Напишите что-нибудь тёплое…"></textarea>
-                        </div>
-                        <button type="submit" class="btn-submit">Отправить ответ</button>
-                    </form>
-                    <div class="rsvp-success" id="rsvpSuccess">
-                        <div class="emoji">✨</div>
-                        <p>Спасибо! Ждём вас!</p>
-                    </div>
-                    <div class="rsvp-info">
-                        <div class="no-children">
-                            <strong>🙏 Важно:</strong> Мы очень любим детей, но в этот вечер просим вас провести его без них —<br>чтобы вы могли полностью насладиться праздником.
-                        </div>
-                        <br>
-                        <strong>Цветы:</strong> Вместо букетов мы просим вас сделать пожертвование в приют для животных —<br>ваш жест станет частью нашей благодарности.
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- ФУТЕР -->
+    <footer class="footer">
+        <div class="container">
+            <p>С любовью,</p>
+            <p class="footer-names">Имя Жениха & Имя Невесты</p>
+            <p class="footer-links">
+                <a href="tel:+70000000000">+7 000 000-00-00</a>
+                <a href="mailto:hello@example.com">hello@example.com</a>
+            </p>
+            <p class="footer-logo">Synodica.studio</p>
+        </div>
+    </footer>
 
-        <!-- ============================================================
-        НИЖНЯЯ НАВИГАЦИЯ
-        ============================================================ -->
-        <nav class="bottom-nav" id="bottomNav">
-            <button class="nav-item active" data-slide="0">
-                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                <span>Главная</span>
-            </button>
-            <button class="nav-item" data-slide="1">
-                <svg viewBox="0 0 24 24"><path d="M4 4h16v12H4z"/><polyline points="22 6 12 13 2 6"/></svg>
-                <span>Приглашение</span>
-            </button>
-            <button class="nav-item" data-slide="2">
-                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>Локация</span>
-            </button>
-            <button class="nav-item" data-slide="3">
-                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M8 8L16 16M16 8L8 16"/></svg>
-                <span>Дресс-код</span>
-            </button>
-            <button class="nav-item" data-slide="4">
-                <svg viewBox="0 0 24 24"><path d="M4 4h16v12H4z"/><polyline points="22 6 12 13 2 6"/></svg>
-                <span>RSVP</span>
-            </button>
-        </nav>
-
-    </div>
-
-    <!-- ============================================================
-    СКРИПТЫ
-    ============================================================ -->
     <script>
-        // ---------- ПЕРЕМЕННЫЕ ----------
-        const app = document.getElementById('app');
-        const slides = document.querySelectorAll('.slide');
-        const navItems = document.querySelectorAll('.nav-item');
+        // ==================== ИНТЕРАКТИВ С КОНВЕРТОМ ====================
         const envelope = document.getElementById('envelope');
-        const hint = document.getElementById('envelopeHint');
-        let envelopeOpened = false;
-        let currentSlide = 0;
-        let isScrolling = false;
+        const waxSeal = document.getElementById('waxSeal');
 
-        // ---------- ОТКРЫТИЕ КОНВЕРТА ----------
-        function openEnvelope() {
-            if (envelopeOpened) return;
-            envelopeOpened = true;
+        function toggleEnvelope() {
+            if (envelope.classList.contains('open')) return;
             envelope.classList.add('open');
-            hint.classList.add('hidden');
-
-            setTimeout(() => {
-                goToSlide(1);
-            }, 950);
         }
 
-        // ---------- ПЕРЕКЛЮЧЕНИЕ СЛАЙДОВ ----------
-        function goToSlide(index) {
-            if (index < 0 || index >= slides.length) return;
-            if (isScrolling) return;
-            isScrolling = true;
-
-            const target = slides[index];
-            const container = app;
-            const offsetTop = target.offsetTop;
-            container.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
-
-            setTimeout(() => {
-                slides.forEach(s => s.classList.remove('active-slide'));
-                target.classList.add('active-slide');
-                currentSlide = index;
-                updateNav(index);
-                isScrolling = false;
-            }, 550);
-        }
-
-        // ---------- ОБНОВЛЕНИЕ НАВИГАЦИИ ----------
-        function updateNav(index) {
-            navItems.forEach((btn, i) => {
-                btn.classList.toggle('active', i === index);
-            });
-        }
-
-        // ---------- ОБРАБОТЧИКИ НАВИГАЦИИ ----------
-        navItems.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const slideIndex = parseInt(this.dataset.slide);
-                if (slideIndex === 0 && !envelopeOpened) {
-                    openEnvelope();
-                    return;
-                }
-                goToSlide(slideIndex);
-            });
+        waxSeal.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleEnvelope();
         });
 
-        // ---------- ОТСЛЕЖИВАНИЕ СКРОЛЛА ----------
-        let scrollTimeout;
-        app.addEventListener('scroll', function() {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                let maxVisible = 0;
-                let activeIndex = 0;
-                slides.forEach((slide, i) => {
-                    const rect = slide.getBoundingClientRect();
-                    const visible = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
-                    if (visible > maxVisible) {
-                        maxVisible = visible;
-                        activeIndex = i;
-                    }
-                });
-                if (activeIndex !== currentSlide) {
-                    currentSlide = activeIndex;
-                    slides.forEach(s => s.classList.remove('active-slide'));
-                    slides[activeIndex].classList.add('active-slide');
-                    updateNav(activeIndex);
-                }
-            }, 100);
+        envelope.addEventListener('click', function(e) {
+            if (!e.target.closest('.letter-card') && !e.target.closest('.wax-seal')) {
+                toggleEnvelope();
+            }
         });
 
-        // ---------- RSVP ----------
-        function submitRSVP(e) {
+        document.getElementById('letterCard').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // ==================== ОТПРАВКА RSVP ====================
+        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            const form = document.getElementById('rsvpForm');
-            const success = document.getElementById('rsvpSuccess');
+
+            const form = this;
+            const successDiv = document.getElementById('rsvp-success');
 
             const name = document.getElementById('name').value.trim();
+            const guests = document.getElementById('guests').value;
+            const attendance = document.querySelector('input[name="attendance"]:checked')?.value || '';
+
             if (!name) {
-                alert('Пожалуйста, укажите ваше имя.');
+                alert('Пожалуйста, введите ваше имя.');
                 return;
             }
 
-            form.style.display = 'none';
-            success.style.display = 'block';
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('guests', guests);
+            formData.append('attendance', attendance);
+            formData.append('access_key', 'c2bf3689-190a-48e3-8a6e-c9f13ad88314');
+            formData.append('subject', 'Новый RSVP с сайта-приглашения!');
 
-            setTimeout(() => {
-                form.style.display = 'block';
-                success.style.display = 'none';
-                form.reset();
-                goToSlide(0);
-                envelopeOpened = false;
-                envelope.classList.remove('open');
-                hint.classList.remove('hidden');
-            }, 2800);
-        }
+            const btn = form.querySelector('.btn-rsvp');
+            btn.disabled = true;
+            btn.textContent = 'Отправка...';
 
-        // ---------- КАРТА ----------
-        function openMap() {
-            const query = encodeURIComponent('ул. Бакинская, 5');
-            window.open(`https://yandex.ru/maps/?text=${query}`, '_blank');
-        }
-
-        // ---------- ИНИЦИАЛИЗАЦИЯ ----------
-        slides.forEach((s, i) => {
-            if (i === 0) s.classList.add('active-slide');
-            else s.classList.remove('active-slide');
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    form.style.display = 'none';
+                    successDiv.style.display = 'block';
+                } else {
+                    alert('Ошибка: ' + (data.message || 'Не удалось отправить. Попробуйте позже.'));
+                    btn.disabled = false;
+                    btn.textContent = 'Отправить';
+                }
+            })
+            .catch(error => {
+                alert('Ошибка сети. Проверьте подключение к интернету.');
+                btn.disabled = false;
+                btn.textContent = 'Отправить';
+                console.error(error);
+            });
         });
-        updateNav(0);
-        console.log('Сайт приглашения — Алия & Алишер (Pinterest-эстетика)');
     </script>
 
 </body>
